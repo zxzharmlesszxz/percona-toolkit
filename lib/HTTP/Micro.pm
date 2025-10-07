@@ -238,7 +238,7 @@ sub _split_url {
               SSL_verifycn_name => $host,
            );
            ref($self->{fh}) eq 'IO::Socket::SSL'
-               or die(qq/SSL connection failed for $host\n/);
+               or die(qq/SSL connection failed for $host\n/ .  IO::Socket::SSL->errstr);
            if ( $self->{fh}->can("verify_hostname") ) {
                $self->{fh}->verify_hostname( $host, $ssl_verify_args )
                   or die(qq/SSL certificate not valid for $host\n/);
